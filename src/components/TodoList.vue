@@ -43,16 +43,18 @@ export default {
       this.list.unshift({
         label: newItem, checked: false
       })
-
-      this.updateLocalStorage();
       event.target.value = '';
     },
     deleteItem(index) {
       this.list.splice(index, 1);
-      this.updateLocalStorage();
     },
     updateLocalStorage() {
       localStorage.setItem('list', JSON.stringify(this.list));
+    }
+  },
+  watch: {
+    list() {
+      this.updateLocalStorage();
     }
   }
 }
